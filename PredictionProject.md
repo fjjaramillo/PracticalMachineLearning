@@ -4,6 +4,8 @@ author: "Francisco J. Jaramillo"
 date: "Friday, February 20, 2015"
 output: html_document
 ---
+#Practical Machine Learning Project - Prediction
+
 
 ###1.- DEVELOPING THE PREDICTION MODEL
 Different methods and packages were tried to build the model. It was decided to use the package caret for partitioning; and develop a model based on the random Forest method using the randomForrest package.
@@ -72,11 +74,11 @@ Package "randomForest"" was used to train the data and build the model. In a pre
      rf = randomForest(training$classe~., data=training, mtry=4, ntree=100, importance=TRUE)
      print(rf)
 ```
-#####--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#####------------------------------------------------------------------------------------------------------------------------
 #####  Results:
 ######  Model rf was created using the random forrest model for a partition of 17662 rows
 ######  According to the print out of the model, the error is expected to be about 2.96% 
-#####--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#####------------------------------------------------------------------------------------------------------------------------
 
 
 ###2.- TESTING/CROSSVALIDATION
@@ -86,12 +88,12 @@ Here the model is used to predict the "classe" (A,B,C,D,E) of the testing partit
      pred<-predict(rf,testing)
      confusionMatrix(pred,testing$classe)
 ```
-#####--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#####------------------------------------------------------------------------------------------------------------------------
 #####   Results:
 ######   According to the confusion Matrix on the crossvalidation the calculated accuracy is 96.8% 
 ######   while the interval of confidence at 95% calculates the accuraccy should be between 95.9% and 97.5%
-#####--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#####------------------------------------------------------------------------------------------------------------------------
 #####   Interesting Note:
 ######   The calculated prediction model matched the results of the exercise "prediction assignment submission" 
 ######   with 100% accuraccy.
-#####--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#####------------------------------------------------------------------------------------------------------------------------
